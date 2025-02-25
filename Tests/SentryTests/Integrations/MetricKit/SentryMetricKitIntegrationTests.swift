@@ -73,7 +73,7 @@ final class SentryMetricKitIntegrationTests: SentrySDKIntegrationTestsBase {
     
     func testMXCrashPayloadReceived() throws {
         if #available(iOS 15, macOS 12, macCatalyst 15, *) {
-            givenSDKWithHubWithScope()
+            try givenSDKWithHubWithScope()
             
             let sut = SentryMetricKitIntegration()
             givenInstalledWithEnabled(sut)
@@ -87,7 +87,7 @@ final class SentryMetricKitIntegrationTests: SentrySDKIntegrationTestsBase {
     
     func testAttachDiagnosticAsAttachment() throws {
         if #available(iOS 15, macOS 12, macCatalyst 15, *) {
-            givenSDKWithHubWithScope()
+            try givenSDKWithHubWithScope()
             
             let sut = SentryMetricKitIntegration()
             givenInstalledWithEnabled(sut) { $0.enableMetricKitRawPayload = true }
@@ -106,7 +106,7 @@ final class SentryMetricKitIntegrationTests: SentrySDKIntegrationTestsBase {
     
     func testDontAttachDiagnosticAsAttachment() throws {
         if #available(iOS 15, macOS 12, macCatalyst 15, *) {
-            givenSDKWithHubWithScope()
+            try givenSDKWithHubWithScope()
             
             let sut = SentryMetricKitIntegration()
             
@@ -124,7 +124,7 @@ final class SentryMetricKitIntegrationTests: SentrySDKIntegrationTestsBase {
     
     func testSetInAppIncludes_AppliesInAppToStackTrace() throws {
         if #available(iOS 15, macOS 12, macCatalyst 15, *) {
-            givenSDKWithHubWithScope()
+            try givenSDKWithHubWithScope()
             
             let sut = SentryMetricKitIntegration()
             givenInstalledWithEnabled(sut) { options in
@@ -146,7 +146,7 @@ final class SentryMetricKitIntegrationTests: SentrySDKIntegrationTestsBase {
     
     func testCPUExceptionDiagnostic_PerThread() throws {
         if #available(iOS 15, macOS 12, macCatalyst 15, *) {
-            givenSDKWithHubWithScope()
+            try givenSDKWithHubWithScope()
             
             let sut = SentryMetricKitIntegration()
             givenInstalledWithEnabled(sut)
@@ -160,7 +160,7 @@ final class SentryMetricKitIntegrationTests: SentrySDKIntegrationTestsBase {
     
     func testCPUExceptionDiagnostic_NotPerThread() throws {
         if #available(iOS 15, macOS 12, macCatalyst 15, *) {
-            givenSDKWithHubWithScope()
+            try givenSDKWithHubWithScope()
             
             let sut = SentryMetricKitIntegration()
             givenInstalledWithEnabled(sut)
@@ -174,7 +174,7 @@ final class SentryMetricKitIntegrationTests: SentrySDKIntegrationTestsBase {
     
     func testCPUExceptionDiagnostic_OnlyOneFrame() throws {
         if #available(iOS 15, macOS 12, macCatalyst 15, *) {
-            givenSDKWithHubWithScope()
+            try givenSDKWithHubWithScope()
             
             let sut = SentryMetricKitIntegration()
             givenInstalledWithEnabled(sut)
@@ -211,7 +211,7 @@ final class SentryMetricKitIntegrationTests: SentrySDKIntegrationTestsBase {
     
     func testDiskWriteExceptionDiagnostic() throws {
         if #available(iOS 15, macOS 12, macCatalyst 15, *) {
-            givenSDKWithHubWithScope()
+            try givenSDKWithHubWithScope()
             
             let sut = SentryMetricKitIntegration()
             givenInstalledWithEnabled(sut)
@@ -225,7 +225,7 @@ final class SentryMetricKitIntegrationTests: SentrySDKIntegrationTestsBase {
     
     func testHangDiagnostic() throws {
         if #available(iOS 15, macOS 12, macCatalyst 15, *) {
-            givenSDKWithHubWithScope()
+            try givenSDKWithHubWithScope()
             
             let sut = SentryMetricKitIntegration()
             givenInstalledWithEnabled(sut)
@@ -245,12 +245,12 @@ final class SentryMetricKitIntegrationTests: SentrySDKIntegrationTestsBase {
         integration.install(with: options)
     }
     
-    private func givenSDKWithHubWithScope() {
+    private func givenSDKWithHubWithScope() throws {
         let scope = Scope()
         scope.addBreadcrumb(TestData.crumb)
         scope.addAttachment(TestData.dataAttachment)
         
-        givenSdkWithHub(scope: scope)
+        try givenSdkWithHub(scope: scope)
     }
     
     private func assertPerThread(exceptionType: String, exceptionValue: String, exceptionMechanism: String, handled: Bool = true) throws {

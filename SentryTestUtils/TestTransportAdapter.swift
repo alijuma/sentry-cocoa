@@ -25,4 +25,9 @@ public class TestTransportAdapter: SentryTransportAdapter {
     public override func send(userFeedback: UserFeedback) {
         userFeedbackInvocations.record(userFeedback)
     }
+    
+    public var flushInvocations = Invocations<TimeInterval>()
+    public override func flush(_ timeout: TimeInterval) {
+        flushInvocations.record(timeout)
+    }
 }

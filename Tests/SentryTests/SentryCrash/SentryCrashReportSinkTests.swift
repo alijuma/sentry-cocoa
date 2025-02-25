@@ -14,11 +14,11 @@ class SentryCrashReportSinkTests: SentrySDKIntegrationTestsBase {
     
     private var fixture: Fixture!
     
-    override func setUp() {
+    override func setUpWithError() throws {
         super.setUp()
         fixture = Fixture()
         
-        givenSdkWithHub()
+        try givenSdkWithHub()
     }
     
     override func tearDown() {
@@ -57,9 +57,8 @@ class SentryCrashReportSinkTests: SentrySDKIntegrationTestsBase {
         
         filterReportWithAttachment()
         
-        let client = getTestClient()
-        XCTAssertEqual(1, client.flushInvocations.count)
-        XCTAssertEqual(5, client.flushInvocations.first)
+        XCTAssertEqual(1, transportAdapter.flushInvocations.count)
+        XCTAssertEqual(5, transportAdapter.flushInvocations.first)
         XCTAssertEqual(0, fixture.dispatchQueue.dispatchAsyncCalled)
     }
     
@@ -76,9 +75,8 @@ class SentryCrashReportSinkTests: SentrySDKIntegrationTestsBase {
         
         filterReportWithAttachment()
         
-        let client = getTestClient()
-        XCTAssertEqual(1, client.flushInvocations.count)
-        XCTAssertEqual(5, client.flushInvocations.first)
+        XCTAssertEqual(1, transportAdapter.flushInvocations.count)
+        XCTAssertEqual(5, transportAdapter.flushInvocations.first)
         XCTAssertEqual(0, fixture.dispatchQueue.dispatchAsyncCalled)
     }
     
@@ -87,8 +85,7 @@ class SentryCrashReportSinkTests: SentrySDKIntegrationTestsBase {
         
         filterReportWithAttachment()
         
-        let client = getTestClient()
-        XCTAssertEqual(0, client.flushInvocations.count)
+        XCTAssertEqual(0, transportAdapter.flushInvocations.count)
         XCTAssertEqual(1, fixture.dispatchQueue.dispatchAsyncCalled)
     }
     
@@ -97,8 +94,7 @@ class SentryCrashReportSinkTests: SentrySDKIntegrationTestsBase {
         
         filterReportWithAttachment()
         
-        let client = getTestClient()
-        XCTAssertEqual(0, client.flushInvocations.count)
+        XCTAssertEqual(0, transportAdapter.flushInvocations.count)
         XCTAssertEqual(1, fixture.dispatchQueue.dispatchAsyncCalled)
     }
     
@@ -107,8 +103,7 @@ class SentryCrashReportSinkTests: SentrySDKIntegrationTestsBase {
         
         filterReportWithAttachment()
         
-        let client = getTestClient()
-        XCTAssertEqual(0, client.flushInvocations.count)
+        XCTAssertEqual(0, transportAdapter.flushInvocations.count)
         XCTAssertEqual(1, fixture.dispatchQueue.dispatchAsyncCalled)
     }
     
@@ -121,13 +116,15 @@ class SentryCrashReportSinkTests: SentrySDKIntegrationTestsBase {
         }
     }
     
-    private func getTestClient() -> TestClient {
-        let client = SentrySDK.currentHub().getClient() as? TestClient
-        
-        if client == nil {
+    private  func assertCrashEventWithScope(_ callback: (Event?, Scope?) -> Void) {
+        guard let client = SentrySDK.currentHub().getClient() as? TestClient else {
             XCTFail("Hub Client is not a `TestClient`")
+            return
         }
         
-        return client!
+        XCTAssertEqual(1, client.captureCrashEventInvocations.count, "Wrong number of `Crashs` captured.")
+        let capture = client.captureCrashEventInvocations.first
+        callback(capture?.event, capture?.scope)
     }
+    
 }
