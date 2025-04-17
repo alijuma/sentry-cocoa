@@ -14,6 +14,7 @@ class UserFeedbackUITests: BaseUITest {
         super.setUp()
         
         app.launchArguments.append(contentsOf: [
+            "--io.sentry.feedback.auto-inject-widget",
             "--io.sentry.feedback.no-animations",
             "--io.sentry.wipe-data",
             
@@ -58,7 +59,7 @@ extension UserFeedbackUITests {
     }
     
     func testUIElementsWithCustomizations() {
-        launchApp()
+        launchApp(args: ["--io.sentry.feedback.auto-inject-widget"])
         
         // widget button text
         XCTAssert(app.otherElements["Report Jank"].exists)
@@ -291,6 +292,12 @@ extension UserFeedbackUITests {
         widgetButton.tap()
         XCTAssert(sendButton.waitForExistence(timeout: 1))
         try assertOnlyHookMarkersExist(names: [.onFormOpen])
+        
+        messageTextView.tap()
+        messageTextView.typeText("UITest user feedback")
+
+        // dismiss the onscreen keyboard
+        app.swipeDown(velocity: .fast)
 
         // the modal cancel gesture
         app.swipeDown(velocity: .fast)

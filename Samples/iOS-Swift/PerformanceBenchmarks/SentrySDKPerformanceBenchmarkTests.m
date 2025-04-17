@@ -37,8 +37,7 @@
 
         [app.buttons[@"startTransactionMainThread"] tap];
 
-        [app.tabBars[@"Tab Bar"].buttons[@"More"] tap];
-        [app.staticTexts[@"Benchmarking"] tap];
+        [app.tabBars[@"Tab Bar"].buttons[@"Benchmarking"] tap];
 
         [app.buttons[@"Benchmark start"] tap];
 
