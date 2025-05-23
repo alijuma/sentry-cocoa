@@ -72,6 +72,7 @@ static SentryCrashStackCursor g_stackCursor;
 #pragma mark - Callbacks -
 // ============================================================================
 
+/*
 typedef void (*cxa_throw_type)(void *, std::type_info *, void (*)(void *));
 typedef void (*cxa_rethrow_type)(void);
 
@@ -128,6 +129,7 @@ sentrycrashcm_cppexception_callOriginalTerminationHandler(void)
         g_originalTerminateHandler();
     }
 }
+*/
 
 static void
 CPPExceptionTerminate(void)
@@ -217,16 +219,19 @@ CPPExceptionTerminate(void)
 static void
 initialize(void)
 {
+/*
     static bool isInitialized = false;
     if (!isInitialized) {
         isInitialized = true;
         sentrycrashsc_initCursor(&g_stackCursor, NULL, NULL);
     }
+*/
 }
 
 static void
 setEnabled(bool isEnabled)
 {
+/*
     if (isEnabled != g_isEnabled) {
         g_isEnabled = isEnabled;
         if (isEnabled) {
@@ -240,6 +245,7 @@ setEnabled(bool isEnabled)
         }
         g_captureNextStackTrace = isEnabled;
     }
+*/
 }
 
 static bool
