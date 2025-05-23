@@ -12,8 +12,8 @@ let package = Package(
     targets: [
         .binaryTarget(
                     name: "Sentry",
-                    url: "https://github.com/getsentry/sentry-cocoa/releases/download/8.29.0/Sentry.xcframework.zip",
-                    checksum: "0ce7815afc141b9b8c34555d328895aac77790498bbeebe95e480f44bef17bf3" //Sentry-Static
+                    url: "https://github.com/alijuma/sentry-cocoa/releases/download/100/Sentry.xcframework.zip",
+                    checksum: "fcd36b588865ea0bc779251e83c61216a002e79f2b62393e09a82ebcf72a1120"  //Sentry-Static
                 ),
         .binaryTarget(
                     name: "Sentry-Dynamic",

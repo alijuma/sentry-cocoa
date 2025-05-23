@@ -443,7 +443,7 @@
 
     NSLog(@"%@",
         [NSString stringWithFormat:@"%@",
-                  [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]]);
+            [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding]]);
 }
 
 - (void)testBreadcrumb:(NSString *)reportPath

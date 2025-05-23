@@ -33,7 +33,7 @@ static NSObject *logConfigureLock;
 
     if ([self willLogAtLevel:level]) {
         [logOutput log:[NSString stringWithFormat:@"[Sentry] [%@] %@", nameForSentryLevel(level),
-                                 message]];
+                           message]];
     }
 }
 

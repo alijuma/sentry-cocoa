@@ -56,8 +56,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface
-SentryClient ()
+@interface SentryClient ()
 
 @property (nonatomic, strong) SentryTransportAdapter *transportAdapter;
 @property (nonatomic, strong) SentryDebugImageProvider *debugImageProvider;

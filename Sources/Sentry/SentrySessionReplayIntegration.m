@@ -30,8 +30,7 @@ static NSString *SENTRY_REPLAY_FOLDER = @"replay";
 static SentryTouchTracker *_touchTracker;
 
 API_AVAILABLE(ios(16.0), tvos(16.0))
-@interface
-SentrySessionReplayIntegration ()
+@interface SentrySessionReplayIntegration ()
 @property (nonatomic, strong) SentrySessionReplay *sessionReplay;
 - (void)newSceneActivate;
 @end

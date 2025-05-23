@@ -2,7 +2,7 @@
 
 set -eou pipefail
 
-sdks=( iphoneos iphonesimulator macosx appletvos appletvsimulator watchos watchsimulator xros xrsimulator )
+sdks=( macosx )
 
 rm -rf Carthage/
 mkdir Carthage

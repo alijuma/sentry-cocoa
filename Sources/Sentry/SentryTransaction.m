@@ -9,8 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface
-SentryTransaction ()
+@interface SentryTransaction ()
 
 @property (nonatomic, strong) NSArray<id<SentrySpan>> *spans;
 
