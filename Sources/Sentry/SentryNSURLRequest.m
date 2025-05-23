@@ -17,8 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 NSString *const SentryServerVersionString = @"7";
 NSTimeInterval const SentryRequestTimeout = 15;
 
-@interface
-SentryNSURLRequest ()
+@interface SentryNSURLRequest ()
 
 @property (nonatomic, strong) SentryDsn *dsn;
 
@@ -118,8 +117,7 @@ newAuthHeader(NSURL *url)
 {
     NSMutableString *string = [NSMutableString stringWithString:@"Sentry "];
     [string appendFormat:@"%@,", newHeaderPart(@"sentry_version", SentryServerVersionString)];
-    [string
-        appendFormat:@"%@,",
+    [string appendFormat:@"%@,",
         newHeaderPart(@"sentry_client",
             [NSString stringWithFormat:@"%@/%@", SentryMeta.sdkName, SentryMeta.versionString])];
     [string appendFormat:@"%@", newHeaderPart(@"sentry_key", url.user)];

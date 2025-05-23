@@ -6,8 +6,7 @@
 
 @class SentryProfiler;
 
-@interface
-SentryContinuousProfiler ()
+@interface SentryContinuousProfiler ()
 
 + (nullable SentryProfiler *)profiler;
 

@@ -164,7 +164,7 @@ addTextFileElement(
     char buffer[512];
     int bytesRead;
     for (bytesRead = (int)read(fd, buffer, sizeof(buffer)); bytesRead > 0;
-         bytesRead = (int)read(fd, buffer, sizeof(buffer))) {
+        bytesRead = (int)read(fd, buffer, sizeof(buffer))) {
         if (sentrycrashjson_appendStringElement(getJsonContext(writer), buffer, bytesRead)
             != SentryCrashJSON_OK) {
             SentryCrashLOG_ERROR("Could not append string element");

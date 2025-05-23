@@ -18,8 +18,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface
-SentrySessionReplay ()
+@interface SentrySessionReplay ()
 
 @property (nonatomic) BOOL isRunning;
 

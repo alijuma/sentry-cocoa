@@ -34,6 +34,7 @@
 #include "SentryCrashSystemCapabilities.h"
 
 #include <mach/mach.h>
+#include <sys/_types/_ucontext64.h>
 
 // #define SentryCrashLogger_LocalLevel TRACE
 #include "SentryCrashLogger.h"

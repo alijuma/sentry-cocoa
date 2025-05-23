@@ -1,7 +1,6 @@
 #import "SentryFileContents.h"
 
-@interface
-SentryFileContents ()
+@interface SentryFileContents ()
 
 @end
 

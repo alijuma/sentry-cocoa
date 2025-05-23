@@ -35,8 +35,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface
-SentryHub () <SentryMetricsAPIDelegate>
+@interface SentryHub () <SentryMetricsAPIDelegate>
 
 @property (nullable, nonatomic, strong) SentryClient *client;
 @property (nullable, nonatomic, strong) SentryScope *scope;
@@ -216,7 +215,7 @@ SentryHub () <SentryMetricsAPIDelegate>
                                                             encoding:NSUTF8StringEncoding];
             [SentryLog
                 logWithMessage:[NSString stringWithFormat:@"Capturing session with status: %@",
-                                         sessionString]
+                                   sessionString]
                       andLevel:kSentryLevelDebug];
         }
         [client captureSession:session];
